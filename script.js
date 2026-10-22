@@ -186,3 +186,28 @@ function draw() {
 // Inicia o loop do jogo pela primeira vez
 update();
 
+// Lógica para o botão de Tela Cheia
+const gameContainer = document.getElementById("game-container");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+fullscreenBtn.addEventListener("click", () => {
+    // Se já estiver em tela cheia, sai dela
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+        fullscreenBtn.innerText = "Jogar em Tela Cheia";
+    } else {
+        // Caso contrário, entra em tela cheia
+        gameContainer.requestFullscreen().catch(err => {
+            console.log(`Erro ao tentar ativar tela cheia: ${err.message}`);
+        });
+        fullscreenBtn.innerText = "Sair da Tela Cheia";
+    }
+});
+
+// Detecta se o usuário saiu da tela cheia apertando a tecla 'ESC'
+document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+        fullscreenBtn.innerText = "Jogar em Tela Cheia";
+    }
+});
+
