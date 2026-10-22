@@ -117,34 +117,66 @@ ul li a:hover {
   background-color: #111111;
 }
 
- /* Garante que o corpo da página ocupe a tela toda */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a; /* Cor de fundo da sua página */
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center; /* Centraliza horizontalmente */
-            align-items: center;     /* Centraliza verticalmente */
-            height: 100vh;
-        }
+ /* Container do jogo em modo normal */
+    #game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 40px auto; 
+        text-align: center;
+        background-color: #1a1a1a; /* Fundo do container */
+        padding: 20px;
+        border-radius: 8px;
+        width: fit-content;
+    }
 
-        /* Container do jogo */
-        #game-container {
-            text-align: center;
-        }
+    /* Estilo do canvas */
+    canvas {
+        border: 4px solid #fff;
+        background-color: #000;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        display: block;
+        max-width: 100%; /* Garante responsividade */
+        height: auto;
+    }
 
-        /* Estilo da tela do jogo */
-        canvas {
-            border: 4px solid #fff;
-            background-color: #000;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            display: block;
-        }
+    /* Estilo do Botão */
+    #fullscreenBtn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #00ff00;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
 
-        /* Instruções abaixo do jogo */
-        .instructions {
-            color: #fff;
-            margin-top: 15px;
-            font-size: 14px;
-        }
+    #fullscreenBtn:hover {
+        background-color: #00cc00;
+    }
+
+    .instructions {
+        color: #fff;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    /* REGRA MATADORA: O que acontece quando o container entra em Tela Cheia */
+    #game-container:fullscreen {
+        width: 100vw;
+        height: 100vh;
+        background-color: #000; /* Fundo preto na tela cheia */
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    /* Faz o canvas crescer proporcionalmente na tela cheia */
+    #game-container:fullscreen canvas {
+        height: 80vh; /* Ocupa 80% da altura da tela para sobrar espaço para o botão/instruções */
+        width: auto;
+    }
